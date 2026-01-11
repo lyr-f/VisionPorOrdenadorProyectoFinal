@@ -60,6 +60,7 @@ def security_code_verification(csv_path, camera_index=0, width=1280, height=720)
     # The correct code is defined as the ordered sequence of color indices
     # Example: if there are 3 colors, the correct code is [0, 1, 2]    
     real_code = [i for i in range(code_lenght)]
+    print(real_code)
     introduced_code = []
     time_limit = 30    # Reset code if the user exceeds the allowed time window
 
@@ -94,11 +95,6 @@ def security_code_verification(csv_path, camera_index=0, width=1280, height=720)
                     print("A code color has been detected")
                     print(f"You have to show {code_lenght-len(introduced_code)} more code colors.")
                 else:
-                    timer = time.time()-starting_time
-                    # Reset code if the user exceeds the allowed time window
-                    if  timer > time_limit:
-                        introduced_code = []
-                        print("Code introduction timed out after 30 seconds. The code has been reset. Please begin again.")
                     # Only register a new color if it differs from the previous one
                     # This avoids multiple detections of the same color in consecutive frames
                     if detected_color != introduced_code[-1]:
@@ -111,6 +107,11 @@ def security_code_verification(csv_path, camera_index=0, width=1280, height=720)
                         else:
                             introduced_code = []
                             print("The code introduced was incorrect. The code has been reset, you may try again.")
+                timer = time.time()-starting_time
+                # Reset code if the user exceeds the allowed time window
+                if  timer > time_limit:
+                    introduced_code = []
+                    print("Code introduction timed out after 30 seconds. The code has been reset. Please begin again.")
 
 
             # Wait 1 ms for a key; exit with 'q' or ESC
@@ -122,6 +123,8 @@ def security_code_verification(csv_path, camera_index=0, width=1280, height=720)
     finally:
         cap.release()
         cv2.destroyAllWindows()
+
+
 
 if __name__ == "__main__":
     # If the built-in webcam is not at index 0, change the first argument: main(1)

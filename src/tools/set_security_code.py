@@ -1,9 +1,9 @@
 import cv2
 import os
 import glob
-from src.utils.color_calibration import get_hsv_color_range
-from src.utils.frame_extractor import frame_extractor
-from src.utils.image_io import *
+from utils.color_calibration import get_hsv_color_range
+from utils.frame_extractor import frame_extractor
+from utils.image_io import *
 
 # =====================================================
 # This script should be executed from the project root as:
