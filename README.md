@@ -22,7 +22,7 @@ Once the first color is detected, a 30-second timer is activated. If the full se
 
 ## Proposed System: Tracker and Video Output
 
-*To be completed.*
+The system allows users to customize and perform a workout routine (squats, push-ups, and jumping jacks) detected in real time through a camera. Using OpenCV and MediaPipe Pose, body landmarks and joint angles are analyzed to recognize valid repetitions, update counters, and track progress toward predefined goals. The interface displays repetition status during execution, and once the routine is completed, a final completion message and visual feedback are shown.
 
 
 ## Results and Next Steps
